@@ -69,8 +69,14 @@
       *::after {
         box-sizing: border-box;
       }
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: clip;
+      }
       body {
         margin: 0;
+        overflow-wrap: break-word;
         background: var(--bg);
         color: var(--tx);
         font: 16px/1.65 var(--sans);
@@ -233,7 +239,7 @@
       }
       .stats {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
         gap: 16px;
         max-width: 680px;
       }
@@ -251,9 +257,12 @@
         font-size: 0.85rem;
       }
       /* foto hero */
+      .hero-grid > * {
+        min-width: 0;
+      }
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.25fr 0.75fr;
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
         gap: 48px;
         align-items: center;
       }
@@ -320,7 +329,7 @@
       /* about */
       .about {
         display: grid;
-        grid-template-columns: 1.3fr 1fr;
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
         gap: 40px;
         align-items: start;
       }
@@ -363,7 +372,7 @@
       /* projects */
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(310px, 100%), 1fr));
         gap: 24px;
       }
       .card {
@@ -457,7 +466,7 @@
       /* skills */
       .skills {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
         gap: 20px;
       }
       .sk h3 {
@@ -475,7 +484,7 @@
       /* services */
       .svc {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
         gap: 20px;
       }
       .svc .box {
@@ -607,10 +616,10 @@
           padding: 64px 0;
         }
         .about {
-          grid-template-columns: 1fr;
+          grid-template-columns: minmax(0, 1fr);
         }
         .hero-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns: minmax(0, 1fr);
           gap: 36px;
         }
         .photo {
@@ -639,6 +648,52 @@
         }
         .links.open {
           transform: none;
+        }
+      }
+      @media (max-width: 480px) {
+        .wrap {
+          padding: 0 16px;
+        }
+        .hero h1 {
+          font-size: clamp(1.9rem, 9.5vw, 2.4rem);
+        }
+        .hero p.lead {
+          font-size: 1rem;
+        }
+        .cta .btn,
+        .cl .btn {
+          flex: 1 1 100%;
+          justify-content: center;
+        }
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .stat b {
+          font-size: 1.4rem;
+        }
+        .box {
+          padding: 18px;
+        }
+        .cb {
+          padding: 18px;
+        }
+        .tl {
+          padding-left: 22px;
+        }
+        .tl div::before {
+          left: -30px;
+        }
+        .photo {
+          max-width: 200px;
+        }
+        .photo .badge {
+          left: -8px;
+          font-size: 0.7rem;
+        }
+        .wa {
+          width: 50px;
+          height: 50px;
+          right: 14px;
         }
       }
     </style>
@@ -694,6 +749,7 @@
                 </div>
               </div>
             </div>
+            <!-- FOTO: guarda tu imagen como foto.jpg junto a este archivo (recomendado vertical 4:5, ~800x1000 px) -->
             <div class="photo">
               <span>AG</span>
               <img
